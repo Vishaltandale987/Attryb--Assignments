@@ -5,11 +5,10 @@ import { AddIcon, CloseIcon } from "@chakra-ui/icons";
 import "./CarSubmitform.css";
 import moment from "moment/moment";
 
-let id = localStorage.getItem("id");
-let time = moment().format("MMMM Do YYYY, h:mm:ss a");
+let Second_hand_car_id = localStorage.getItem("Second_hand_car_id");
+
 
 const initState = {
-  dealer_Id:id,
   model_name: "",
   year_model: "",
   original_paint: "",
@@ -19,11 +18,10 @@ const initState = {
   number_of_accidents_reported: "",
   number_of_previous_buyers: "",
   registration_place: "",
-  postTime: time,
   description: "",
 };
 
-function SecondHandCarSubmitform() {
+function Editfrom() {
   const [image, setimage] = useState("");
   const [formData, setFormData] = useState(initState);
 
@@ -52,21 +50,36 @@ function SecondHandCarSubmitform() {
 
   // Post request FE to DealersModel
 
+
+
+  // let dealer_id = localStorage.getItem("id");
+
+//   if (formData.img !== "" && formData.dealer_Id !== "") {
+//     handle_post_submiting_from();
+//   }
+
+
+
+// edit 
+
+
+const result = Object.entries(formData)
+  .filter(([key, value]) => value !== "" )
+  .reduce((acc, [key, value]) => {
+    acc[key] = value;
+    return acc;
+  }, {});
+
+ 
   const handle_post_submiting_from = async () => {
     try {
-      let res = await axios.post(`http://localhost:8088/dealers`, formData);
-
-      alert("Car has been added.");
+      let res = await axios.put(`http://localhost:8088/dealers/${Second_hand_car_id}`, result);
+        console.log(res)
+      alert(res.data);
     } catch (err) {
       console.log(err);
     }
   };
-    // let dealer_id = localStorage.getItem("id");
-
-
-  if (formData.img !== "" && formData.dealer_Id !== "" ) {
-    handle_post_submiting_from();
-  }
 
 
 
@@ -199,7 +212,7 @@ function SecondHandCarSubmitform() {
 
           <button
             className="shareButton"
-            onClick={image_file_post_to_cloudinary_get_image_deploylink}
+            onClick={handle_post_submiting_from}
           >
             Post
           </button>
@@ -209,4 +222,4 @@ function SecondHandCarSubmitform() {
   );
 }
 
-export default SecondHandCarSubmitform;
+export default Editfrom;

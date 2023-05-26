@@ -1,70 +1,75 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 import {
-    Flex,
-    Box,
-    FormControl,
-    FormLabel,
-    Input,
-    Checkbox,
-    Stack,
-    Link,
-    Button,
-    Heading,
-    Text,
-    useColorModeValue,
-    useToast,
-    Spinner,
-  } from "@chakra-ui/react";
-  import { NavLink, useNavigate } from "react-router-dom";
-//   import { userAuthLogin } from "../redux/userAuth/auth.actions";
-//   import { useDispatch, useSelector } from "react-redux";
-  
-  const initState = {
-    email: "",
-    password: "",
-  };
-  
-  let url = "https://graceful-fox-apron.cyclic.app/"
+  Flex,
+  Box,
+  FormControl,
+  FormLabel,
+  Input,
+  Checkbox,
+  Stack,
+  Link,
+  Button,
+  Heading,
+  Text,
+  useColorModeValue,
+} from "@chakra-ui/react";
+import { NavLink, useNavigate } from "react-router-dom";
+import axios from "axios";
+
+const initState = {
+  email: "",
+  password: "",
+};
+
+let url = "https://graceful-fox-apron.cyclic.app/";
 function Sign_In() {
-    // const { data, loading, error } = useSelector((store) => store.userMangerdata);
-    const [formData, setFormData] = useState(initState);
-    const navigate = useNavigate();
-    const toast = useToast();
-    // const dispatch = useDispatch();
-    
-    const handleChange = (e) => {
-      const { name, value } = e.target;
-      setFormData({ ...formData, [name]: value });
-    };
-  
-    const handleSubmit = async (e) => {
-      e.preventDefault();
-      try {
-        let res = await fetch(`https://graceful-fox-apron.cyclic.app/user/get`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            email: formData.email,
-          },
-        });
-        res = await res.json();
-        if (res.msg == "Blocked") {
-          alert(`You are Blocked for 24 Hours`);
-          return;
-        }
-      } catch (err) {
-        console.log(err);
+  const [formData, setFormData] = useState(initState);
+  const navigate = useNavigate();
+
+  // const dispatch = useDispatch();
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  console.log("formData", formData);
+
+  const handle_login_submiting_from = async () => {
+    try {
+      let res = await axios.post(`http://localhost:8088/user/login`, formData);
+
+      alert(res.data.massege);
+      
+      localStorage.setItem('id',res.data.userID)
+
+      if (formData.email === "OEMHonda@gmail.com") {
+        setTimeout(() => {
+          navigate("/newCars");
+        }, 2000);
+      }else if(formData.email === "dealer1@gmail.com" || formData.email === "dealer2@gmail.com"){
+        setTimeout(() => {
+          navigate("/secondHandCars");
+        }, 2000);
       }
-  
-    //   dispatch(userAuthLogin(formData));
-    };
-  
-    // if (data.massege === "login successful") {
-  
-    //   setTimeout(() => {
-    //     navigate("/");
-    //   }, 2000);
-    // }
+      
+      else {
+        setTimeout(() => {
+          navigate("/");
+        }, 2000);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  // if (data.massege === "login successful") {
+
+  //   setTimeout(() => {
+  //     navigate("/");
+  //   }, 2000);
+  // }
+
   return (
     <Flex
       minH={"100vh"}
@@ -116,7 +121,7 @@ function Sign_In() {
                 <Checkbox>Remember me</Checkbox>
               </Stack>
               <Button
-                onClick={handleSubmit}
+                onClick={handle_login_submiting_from}
                 bg={"blue.400"}
                 color={"white"}
                 _hover={{
@@ -142,7 +147,7 @@ function Sign_In() {
         </Box>
       </Stack>
     </Flex>
-  )
+  );
 }
 
-export default Sign_In
+export default Sign_In;

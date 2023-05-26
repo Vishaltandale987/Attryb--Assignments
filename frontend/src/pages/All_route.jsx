@@ -8,6 +8,7 @@ import Second_Hand_Cars from "./Second Hand Cars/Second_Hand_Cars";
 import New_cars_page from "./New cars/New_cars_page";
 import Sign_Up from "./signup/Sign_Up";
 import Sign_In from "./signin/Sign_In";
+import SecondHandCarSinglePage from "../components/Submit form for Second hand car/SecondHandCarSinglePage";
 
 function All_route() {
   return (
@@ -50,6 +51,9 @@ function All_route() {
             </PrivetRouts>
           }
         ></Route> */}
+
+
+        <Route path="/secondHandSinglePage" element={<SecondHandCarSinglePage />}></Route>
 
 
         <Route path="/userLogin" element={<Sign_In />}></Route>

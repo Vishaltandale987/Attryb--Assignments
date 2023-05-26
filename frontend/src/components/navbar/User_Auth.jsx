@@ -59,7 +59,7 @@ function User_Auth() {
 
     // get user
     let userId = localStorage.getItem("id");
-    // console.log(ass,"asasas")
+   
 
     const add = () => {
 
@@ -83,7 +83,7 @@ function User_Auth() {
   
   
       try {
-        const res = await axios(`https://graceful-fox-apron.cyclic.app/user/${userId}`);
+        const res = await axios(`http://localhost:8088/user/${userId}`);
         setuserdata(res.data);
       } catch (error) {
         console.log(error);
@@ -92,6 +92,13 @@ function User_Auth() {
     useEffect(() => {
       getUser()
     }, [])
+
+
+
+    const handleLogout = () => {
+      localStorage.removeItem("id");
+      window.location.reload()
+    }
 
   return (
     <div>
@@ -167,14 +174,14 @@ function User_Auth() {
                         objectFit={"cover"}
                       />
                       <Flex justify={"center"} mt={-12}>
-                        {/* <Avatar
+                        <Avatar
                           size={"xl"}
-                          src={user.picture}
+                          src={userdata?.profilePicture}
                           alt={"Author"}
                           css={{
                             border: "2px solid white",
                           }}
-                        /> */}
+                        />
                       </Flex>
 
                       <Box>
@@ -183,10 +190,10 @@ function User_Auth() {
                             fontSize={"2xl"}
                             fontWeight={500}
                             fontFamily={"body"}
+                            
                           >
                           {userdata?.username}
                           </Heading>
-
                    
                         </Stack>
 
@@ -199,10 +206,7 @@ function User_Auth() {
                             color={"white"}
                            
                             colorScheme='whatsapp'
-                            // onClick={() =>
-                            //   dispatch(authlogout())
-
-                            //   }
+                            onClick={handleLogout}
                           >
                             Logout
                           </Button>

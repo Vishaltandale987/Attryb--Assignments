@@ -82,6 +82,7 @@ function Navbar() {
               <NavLink to="/newCars">
              <Button>New Cars</Button>
               </NavLink>
+              
               <NavLink to="/secondHandCars">
                 <Button>Second Hand Cars</Button>
               </NavLink>

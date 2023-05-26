@@ -101,3 +101,17 @@
     cursor: pointer;
     opacity: 0.7;
   }
+
+
+  #secondcarInventrys{
+    display : flex;
+    flex-direction: column;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    
+  }
+
+  .singlediv{
+    border:1px solid red;
+    width:50%;
+    margin:auto;
+  }
