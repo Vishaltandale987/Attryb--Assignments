@@ -46,7 +46,7 @@ function Sign_Up() {
   
   
       try{
-        let res=await axios.post('https://graceful-fox-apron.cyclic.app/user/register',formData)
+        let res=await axios.post('https://serverside-qga2.vercel.app/user/register',formData)
   
   
         console.log(res.data)

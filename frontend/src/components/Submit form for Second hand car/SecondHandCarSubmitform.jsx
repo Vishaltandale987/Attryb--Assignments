@@ -9,7 +9,7 @@ let id = localStorage.getItem("id");
 let time = moment().format("MMMM Do YYYY, h:mm:ss a");
 
 const initState = {
-  dealer_Id:id,
+  dealer_Id: id,
   model_name: "",
   year_model: "",
   original_paint: "",
@@ -21,6 +21,8 @@ const initState = {
   registration_place: "",
   postTime: time,
   description: "",
+  mileage: Number,
+  price: Number,
 };
 
 function SecondHandCarSubmitform() {
@@ -54,21 +56,18 @@ function SecondHandCarSubmitform() {
 
   const handle_post_submiting_from = async () => {
     try {
-      let res = await axios.post(`http://localhost:8088/dealers`, formData);
+      let res = await axios.post(`https://serverside-qga2.vercel.app/dealers`, formData);
 
       alert("Car has been added.");
     } catch (err) {
       console.log(err);
     }
   };
-    // let dealer_id = localStorage.getItem("id");
+  // let dealer_id = localStorage.getItem("id");
 
-
-  if (formData.img !== "" && formData.dealer_Id !== "" ) {
+  if (formData.img !== "" && formData.dealer_Id !== "") {
     handle_post_submiting_from();
   }
-
-
 
   return (
     <div className="share">
@@ -132,6 +131,24 @@ function SecondHandCarSubmitform() {
             type="text"
             onChange={(e) =>
               setFormData({ ...formData, original_paint: e.target.value })
+            }
+            required
+          />
+
+          <Input
+            placeholder={"Price"}
+            type="number"
+            onChange={(e) =>
+              setFormData({ ...formData, price: e.target.value })
+            }
+            required
+          />
+
+          <Input
+            placeholder={"Milage"}
+            type="number"
+            onChange={(e) =>
+              setFormData({ ...formData, mileage: e.target.value })
             }
             required
           />

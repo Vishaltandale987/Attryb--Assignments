@@ -9,6 +9,7 @@ import New_cars_page from "./New cars/New_cars_page";
 import Sign_Up from "./signup/Sign_Up";
 import Sign_In from "./signin/Sign_In";
 import SecondHandCarSinglePage from "../components/Submit form for Second hand car/SecondHandCarSinglePage";
+import Singlepage from "../components/submit new car form/Singlepage";
 
 function All_route() {
   return (
@@ -43,17 +44,11 @@ function All_route() {
           }
         ></Route>
 
-        {/* <Route
-          path="/all_user"
-          element={
-            <PrivetRouts>
-              <RigthCompo />
-            </PrivetRouts>
-          }
-        ></Route> */}
+        
 
 
         <Route path="/secondHandSinglePage" element={<SecondHandCarSinglePage />}></Route>
+        <Route path="/newCarSinglePage" element={<Singlepage />}></Route>
 
 
         <Route path="/userLogin" element={<Sign_In />}></Route>

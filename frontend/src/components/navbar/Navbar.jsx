@@ -39,7 +39,7 @@ import {
   SunIcon,
 } from "@chakra-ui/icons";
 import User_Auth from "./User_Auth";
-import SearchModal from "../search/SearchModal";
+
 
 
 const Links = [
@@ -84,7 +84,7 @@ function Navbar() {
               </NavLink>
               
               <NavLink to="/secondHandCars">
-                <Button>Second Hand Cars</Button>
+                <Button >Second Hand Cars</Button>
               </NavLink>
 
             </HStack>
@@ -92,7 +92,7 @@ function Navbar() {
 
         
 
-              <SearchModal />
+             
 
 
 

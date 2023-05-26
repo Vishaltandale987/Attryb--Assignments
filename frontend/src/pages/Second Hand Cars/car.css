@@ -4,12 +4,15 @@
 
     gap:30px;
 
+    
+
 }
 
 .filter{
     display : flex;
     gap:30px;
     /* float:left; */
+    margin-Bottom:40px;
 }
 
 .flttertag{

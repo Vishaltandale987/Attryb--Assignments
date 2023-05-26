@@ -1,46 +1,53 @@
-import React from 'react'
-import NewCarSubmitform from '../../components/submit new car form/NewCarSubmitform'
-import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
-  useDisclosure,
-  Button,
-} from '@chakra-ui/react'
+import React, { useEffect, useState } from "react";
 
+import axios from "axios";
+
+import New_car_Inventry from "../../components/submit new car form/New_car_Inventry";
+import "./car.css";
+import OEMSearch from "../../components/search/oem/OEMSearch";
 function New_cars_page() {
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const [cardata, setcardata] = useState();
+
+  // get post
+
+  const getPost = async () => {
+    try {
+      const res = await axios("https://serverside-qga2.vercel.app/oem");
+      setcardata(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+
+
+  const add = () => {
+    localStorage.setItem("New_car_id", cardata._id);
+  };
+
+  useEffect(() => {
+    getPost();
+  }, []);
+
   return (
     <div>
-      <h1>New car</h1>
 
-      <Button onClick={onOpen}>Add car</Button>
+      <p style={{
+        color: "rgb(220, 20, 60)",
+        fontFamily:"inherit",
+        fontSize:"50px",
+        marginBottom:"30px"
+      }}> <b> OEM Section</b> </p>
 
-<Modal isOpen={isOpen} onClose={onClose}>
-  <ModalOverlay />
-  <ModalContent>
-    <ModalHeader>New Car Specifications form</ModalHeader>
-    <ModalCloseButton />
-    <ModalBody>
-    <NewCarSubmitform/>
-  
-    </ModalBody>
+<OEMSearch/>
+    <div className="secondcarInventry">
 
-    <ModalFooter>
-      <Button colorScheme='blue' mr={3} onClick={onClose}>
-        Close
-      </Button>
-    </ModalFooter>
-  </ModalContent>
-</Modal>
-    
-
+      {cardata?.map((el, index) => {
+        return <New_car_Inventry key={index} data={el} />;
+      })}
     </div>
-  )
+      </div>
+  );
 }
 
-export default New_cars_page
+export default New_cars_page;

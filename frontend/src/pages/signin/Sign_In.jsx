@@ -21,7 +21,6 @@ const initState = {
   password: "",
 };
 
-let url = "https://graceful-fox-apron.cyclic.app/";
 function Sign_In() {
   const [formData, setFormData] = useState(initState);
   const navigate = useNavigate();
@@ -37,7 +36,7 @@ function Sign_In() {
 
   const handle_login_submiting_from = async () => {
     try {
-      let res = await axios.post(`http://localhost:8088/user/login`, formData);
+      let res = await axios.post(`https://serverside-qga2.vercel.app/user/login`, formData);
 
       alert(res.data.massege);
       

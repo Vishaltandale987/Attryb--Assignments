@@ -18,6 +18,7 @@ import {
   } from "@chakra-ui/react";
 import SecondHandCarSubmitform from "./SecondHandCarSubmitform";
 import Editfrom from "./Editfrom";
+import { Navigate } from "react-router-dom";
 
 function SecondHandCarSinglePage() {
   let post_Id = localStorage.getItem("Second_hand_car_id");
@@ -29,7 +30,7 @@ function SecondHandCarSinglePage() {
 
   const get_data_by_id = async () => {
     try {
-      const res = await axios(`http://localhost:8088/dealers/${post_Id}`);
+      const res = await axios(`https://serverside-qga2.vercel.app/dealers/${post_Id}`);
       setPost(res.data);
     } catch (error) {
       console.log(error);
@@ -49,8 +50,12 @@ function SecondHandCarSinglePage() {
 
         if( id === "646f274d5e49494745f215e4"){
 
-            const res = await axios.delete(`http://localhost:8088/dealers/${post._id}`);
-            console.log(res.data)
+            const res = await axios.delete(`https://serverside-qga2.vercel.app/dealers/${post_Id}`);
+            alert("Post has been delete")
+            window.location.reload(false);
+
+          
+            
         }else{
             alert("Only dealers have access to delete")
         }
@@ -72,6 +77,8 @@ function SecondHandCarSinglePage() {
           <EditIcon onClick={onOpen}
           style={{
               marginLeft: "20px",
+              marginBottom:"30px",
+              marginTop:'20px'
             }}
             />
             ) : null}
@@ -79,7 +86,10 @@ function SecondHandCarSinglePage() {
       {id === "646f274d5e49494745f215e4" ? (
           <DeleteIcon onClick={handle_delete_car}
           style={{
-              marginLeft: "20px",
+            marginLeft: "20px",
+            marginBottom:"30px",
+            marginTop:'20px',
+            
             }}
             />
             ) : null}
@@ -93,39 +103,68 @@ function SecondHandCarSinglePage() {
           width: "90%",
         }}
       />
-      <p>{post?.model_name}</p>
-      <p>{post?.year_model}</p>
-      <p>{post?.original_paint}</p>
-      <p>{post?.km_run}</p>
-      <p>{post?.major_scratches}</p>
-      <p>{post?.number_of_accidents_reported}</p>
-      <p>{post?.number_of_previous_buyers}</p>
-      <p>{post?.registration_place}</p>
+
+      <div 
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          textAlign: "left",
+          marginBottom: "20px",
+          marginLeft: "50px",
+          marginTop: "20px",
+        }}
+      >
+
+      <p className="text">  <b> Model Name - {post?.model_name} </b></p>
+      <p className="text" > <b> Year Model - {post?.year_model} </b></p>
+      <p className="text" > <b> Original Paint - {post?.original_paint} </b></p>
+      <p className="text" > <b>  KMs on Odometer - {post?.km_run} </b></p>
+      <p className="text" > <b> Major Scratches - {post?.major_scratches} </b></p>
+      <p className="text" > <b> Number of accidents reported - {post?.number_of_accidents_reported} </b></p>
+      <p className="text" > <b> Number of previous buyers - {post?.number_of_previous_buyers} </b></p>
+      <p className="text" > <b> Registration Place - {post?.registration_place} </b></p>
+      <p className="text" > <b> Mileage - {post?.mileage} </b></p>
+      <p className="text" > <b> Price - {post?.price} </b></p>
+      </div>
 
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Second hand Car Specifications form</ModalHeader>
+          <ModalHeader>Second hand Car Specifications Edit form</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Editfrom />
+            <Editfrom  />
           </ModalBody>
 
-          <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
-              Close
-            </Button>
-          </ModalFooter>
+         
         </ModalContent>
       </Modal>
+
+
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          textAlign: "left",
+          marginBottom: "20px",
+          marginLeft: "50px",
+          marginTop: "20px",
+        }}
+      >
+
+      <p className="text" > <b> Car Description  </b></p>
 
       {post?.description?.split(".").map((item, index) => {
         if (item === "") {
           return;
         }
-        return <li key={index}>{item}</li>;
+        return <li   className="text"  key={index}>{item}</li>;
       })}
+      </div>
+
+      <Button colorScheme='facebook' mb={10} onClick={() => alert("Work in Progress.")
+      }>Buy</Button>
     </div>
   );
 }

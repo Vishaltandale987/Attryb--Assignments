@@ -83,7 +83,7 @@ function User_Auth() {
   
   
       try {
-        const res = await axios(`http://localhost:8088/user/${userId}`);
+        const res = await axios(`https://serverside-qga2.vercel.app/user/${userId}`);
         setuserdata(res.data);
       } catch (error) {
         console.log(error);

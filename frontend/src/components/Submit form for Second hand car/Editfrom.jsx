@@ -7,7 +7,6 @@ import moment from "moment/moment";
 
 let Second_hand_car_id = localStorage.getItem("Second_hand_car_id");
 
-
 const initState = {
   model_name: "",
   year_model: "",
@@ -19,9 +18,11 @@ const initState = {
   number_of_previous_buyers: "",
   registration_place: "",
   description: "",
+  mileage: Number,
+  price: Number,
 };
 
-function Editfrom() {
+function  Editfrom() {
   const [image, setimage] = useState("");
   const [formData, setFormData] = useState(initState);
 
@@ -52,36 +53,29 @@ function Editfrom() {
 
 
 
-  // let dealer_id = localStorage.getItem("id");
+  // edit
 
-//   if (formData.img !== "" && formData.dealer_Id !== "") {
-//     handle_post_submiting_from();
-//   }
+  const result = Object.entries(formData)
+    .filter(([key, value]) => value !== "")
+    .reduce((acc, [key, value]) => {
+      acc[key] = value;
+      return acc;
+    }, {});
 
-
-
-// edit 
-
-
-const result = Object.entries(formData)
-  .filter(([key, value]) => value !== "" )
-  .reduce((acc, [key, value]) => {
-    acc[key] = value;
-    return acc;
-  }, {});
-
- 
   const handle_post_submiting_from = async () => {
     try {
-      let res = await axios.put(`http://localhost:8088/dealers/${Second_hand_car_id}`, result);
-        console.log(res)
+      let res = await axios.put(
+        `https://serverside-qga2.vercel.app/dealers/${Second_hand_car_id}`,
+        result
+      );
+      console.log(res);
+
       alert(res.data);
+      window.location.reload(false);
     } catch (err) {
       console.log(err);
     }
   };
-
-
 
   return (
     <div className="share">
@@ -90,15 +84,15 @@ const result = Object.entries(formData)
           <div className="shareBottom">
             <div className="shareOptions">
               <label htmlFor="file" className="shareOption">
-                <AddIcon mr={2} className="shareIcon" />
-                <span className="shareOptionText">Photo or Video</span>
-                <input
+                {/* <AddIcon mr={2} className="shareIcon" /> */}
+                {/* <span className="shareOptionText">Photo or Video</span> */}
+                {/* <input
                   style={{ display: "none" }}
                   type="file"
                   id="file"
                   // accept=".png,.jpeg,.jpg"
                   onChange={(e) => setimage(e.target.files[0])}
-                />
+                /> */}
               </label>
               {image && (
                 <div className="shareImgContainer">
@@ -145,6 +139,24 @@ const result = Object.entries(formData)
             type="text"
             onChange={(e) =>
               setFormData({ ...formData, original_paint: e.target.value })
+            }
+            required
+          />
+
+          <Input
+            placeholder={"Price"}
+            type="number"
+            onChange={(e) =>
+              setFormData({ ...formData, price: e.target.value })
+            }
+            required
+          />
+
+          <Input
+            placeholder={"Milage"}
+            type="number"
+            onChange={(e) =>
+              setFormData({ ...formData, mileage: e.target.value })
             }
             required
           />
@@ -199,7 +211,7 @@ const result = Object.entries(formData)
             }
             required
           />
-          <textarea
+          {/* <textarea
             id="w3review"
             name="w3review"
             rows="10"
@@ -208,12 +220,9 @@ const result = Object.entries(formData)
             onChange={(e) =>
               setFormData({ ...formData, description: e.target.value })
             }
-          ></textarea>
+          ></textarea> */}
 
-          <button
-            className="shareButton"
-            onClick={handle_post_submiting_from}
-          >
+          <button className="shareButton" onClick={handle_post_submiting_from}>
             Post
           </button>
         </div>

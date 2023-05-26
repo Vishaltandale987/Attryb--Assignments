@@ -107,6 +107,7 @@
     display : flex;
     flex-direction: column;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    /* background-color: 	#f5f5dc; */
     
   }
 
@@ -114,4 +115,14 @@
     border:1px solid red;
     width:50%;
     margin:auto;
+    margin-top: 30px; 
+    margin-bottom: 30px; 
+    
+  }
+
+  .text{
+    font-Family:inherit;
+    font-size: 25px;
+    color:	gray;
+    
   }

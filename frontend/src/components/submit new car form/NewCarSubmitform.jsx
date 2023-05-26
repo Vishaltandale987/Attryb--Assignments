@@ -42,7 +42,25 @@ function NewCarSubmitform() {
         console.log(err);
       });
   };
-  
+
+  // Post request FE to OEMModel
+
+  const handle_post_submiting_from = async () => {
+    try {
+      let res = await axios.post(`https://serverside-qga2.vercel.app/oem`, formData);
+
+      alert("Car has been added.");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  // let dealer_id = localStorage.getItem("id");
+
+  if (formData.img !== "") {
+    handle_post_submiting_from();
+  }
+
+
 
   return (
     <div className="share">
@@ -92,15 +110,20 @@ function NewCarSubmitform() {
             required
           />
 
-      
-
-        
-
           <Input
             placeholder={"Year Model"}
             type="text"
             onChange={(e) =>
               setFormData({ ...formData, year_model: e.target.value })
+            }
+            required
+          />
+
+          <Input
+            placeholder={"Price"}
+            type="text"
+            onChange={(e) =>
+              setFormData({ ...formData, price: e.target.value })
             }
             required
           />
