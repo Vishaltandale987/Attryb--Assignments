@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 
-import PrivetRouts from "./PrivetRouts";
+
 
 import Home from "./Home/Home";
 import Second_Hand_Cars from "./Second Hand Cars/Second_Hand_Cars";
@@ -20,27 +20,20 @@ function All_route() {
         <Route
           path="/secondHandCars"
           element={
-            // <PrivetRouts>
+    
               <Second_Hand_Cars />
-            // </PrivetRouts>
+       
           }
         ></Route>
 
-        {/* <Route
-          path="/profile"
-          element={
-            <PrivetRouts>
-              <Profile />
-            </PrivetRouts>
-          }
-        ></Route> */}
+     
 
         <Route
           path="/newCars"
           element={
-            // <PrivetRouts>
+           
               <New_cars_page />
-            // </PrivetRouts>
+       
           }
         ></Route>
 
