@@ -1,4 +1,4 @@
-# Attryb-Assignments add
+# Attryb-Assignments
 Attryb is a scalable car buying platform.
 
 
@@ -31,3 +31,12 @@ This is the OEM Section where Consumers can see all new cars and also page conte
 ### Dealer Admin Panel
 This is the Dealer Admin Panel where Dealer can add Second hand cars and also Dealer is able to do  "delete" and "edit" cars. And this page have only access to "dealer".
 ![Dealer Admin Panel](https://res.cloudinary.com/dd9cmhunr/image/upload/v1685223064/Screenshot_564_kdrwgs.png)
+
+### Deploy link -> https://buycars-five.vercel.app/
+
+### Backend API -> https://serverside-qga2.vercel.app/
+
+### Backend github link -> https://github.com/Vishaltandale987/serverside
+
+
+
