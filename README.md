@@ -30,7 +30,7 @@ This is the OEM Section where Consumers can see all new cars and also page conte
 
 ### Dealer Admin Panel
 This is the Dealer Admin Panel where Dealer can add Second hand cars and also Dealer is able to do  "delete" and "edit" cars. And this page have only access to "dealer".
-![Dealer Admin Panel](https://res.cloudinary.com/dd9cmhunr/image/upload/v1685223064/Screenshot_564_kdrwgs.png)
+![Dealer  Admin Panel](https://res.cloudinary.com/dd9cmhunr/image/upload/v1685223064/Screenshot_564_kdrwgs.png)
 
 
 This is second hand car form where dealer can add cars into a data base.

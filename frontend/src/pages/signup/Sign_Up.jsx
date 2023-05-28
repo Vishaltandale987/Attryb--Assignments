@@ -42,6 +42,7 @@ function Sign_Up() {
   
     const handleSubmit = async (e) => {
       e.preventDefault();
+      
       // dispatch(userAuthSignUP(formData));
   
   
