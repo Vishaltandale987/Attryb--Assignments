@@ -33,7 +33,7 @@ This is the Dealer Admin Panel where Dealer can add Second hand cars and also De
 ![Dealer  Admin Panel](https://res.cloudinary.com/dd9cmhunr/image/upload/v1685223064/Screenshot_564_kdrwgs.png)
 
 
-This is second hand car form where dealer can add cars into a data base.
+This is second hand car form where dealer can add cars information like car image (i have cloudinary for image deployment ), car price, car color car, mileage etc into a data base. 
 
 ![Dealer Admin Panel](https://res.cloudinary.com/dd9cmhunr/image/upload/v1685226016/Screenshot_566_pbkjsc.png)
 
